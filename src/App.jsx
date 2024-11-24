@@ -9,11 +9,13 @@ function App() {
     { name: "Do soemthafsd ng", id: 2 },
   ]);
 
+  const selectedProject = projects.find((p) => p.id === 1);
+
   return (
     <main className="h-screen my-8 flex gap-8">
       <Header />
-      <Sidebar projects={projects} />
-      <Project />
+      <Sidebar projects={projects} setProjects={setProjects} />
+      <Project project={selectedProject} />
     </main>
   );
 }
