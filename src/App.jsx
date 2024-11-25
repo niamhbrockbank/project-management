@@ -21,7 +21,6 @@ const INITIAL_PROJECTS = [
 
 const NEW_PROJECT = {
   name: "New Project",
-  date: String(new Date()),
   description: "",
 };
 
@@ -37,7 +36,10 @@ function App() {
     setProjects((existingProjects) => {
       const newProjectId = crypto.randomUUID();
       setSelectedProjectID(newProjectId);
-      return [...existingProjects, { ...NEW_PROJECT, id: newProjectId }];
+      return [
+        ...existingProjects,
+        { ...NEW_PROJECT, id: newProjectId, date: String(new Date()) },
+      ];
     });
   }
 
