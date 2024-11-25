@@ -13,7 +13,7 @@ export default function Project({ project, onDelete, onEditProject }) {
             onDelete={onDelete}
             onEdit={onEditProject}
           />
-          <Tasks />
+          <Tasks tasks={project.tasks} />
         </section>
       )}
     </>

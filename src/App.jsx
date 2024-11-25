@@ -1,28 +1,14 @@
 import { useState } from "react";
+import INITIAL_PROJECTS from "./assets/initial-projects";
 import Header from "./components/Header";
 import Project from "./components/Project";
 import Sidebar from "./components/Sidebar";
 import getDate from "./utils/getDate";
 
-const INITIAL_PROJECTS = [
-  {
-    name: "Learning React",
-    id: crypto.randomUUID(),
-    date: "Tues Dec 3 2024",
-    description:
-      "Learn React from the ground up. Start with the basics and finish with more advanced knowledge.",
-  },
-  {
-    name: "Mastering React",
-    id: crypto.randomUUID(),
-    date: "Wed Dec 4 2024",
-    description: "These are some really advanced concepts.",
-  },
-];
-
 const NEW_PROJECT = {
   name: "New Project",
   description: "Description goes here...",
+  tasks: [],
 };
 
 function App() {
