@@ -1,5 +1,14 @@
-export default function ProjectSummary({ project, onDelete }) {
+import { useState } from "react";
+
+export default function ProjectSummary({ project, onDelete, onEdit }) {
   const { name, date, description } = project;
+
+  const [editedName, setEditedName] = useState(name);
+
+  function handleChange(event) {
+    setEditedName(event.target.value);
+  }
+
   return (
     <section
       id="project-sumnmary"
@@ -7,7 +16,12 @@ export default function ProjectSummary({ project, onDelete }) {
     >
       <span className="flex justify-between">
         <span>
-          <h2 className="text-2xl font-bold text-stone-800 my-4">{name}</h2>
+          <input
+            className="w-full text-2xl font-bold text-stone-800 my-4 bg-inherit focus:outline-stone-200"
+            value={editedName}
+            onChange={(e) => handleChange(e)}
+            onBlur={() => onEdit(editedName)}
+          />
           <p className="text-stone-500">{date}</p>
         </span>
         <button onClick={onDelete} className="text-stone-800 my-4 font-light">

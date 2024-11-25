@@ -48,6 +48,28 @@ function App() {
     });
   }
 
+  function handleEditProjectName(newName) {
+    setProjects((prevProjects) => {
+      const copyOfPrevProjects = [...prevProjects];
+      const selectedIndex = prevProjects.findIndex(
+        (p) => p.id === selectedProjectID
+      );
+
+      const updatedProject = {
+        ...copyOfPrevProjects[selectedIndex],
+        name: newName,
+      };
+
+      const updatedProjects = [
+        ...copyOfPrevProjects.slice(0, selectedIndex),
+        updatedProject,
+        ...copyOfPrevProjects.slice(selectedIndex + 1),
+      ];
+
+      return updatedProjects;
+    });
+  }
+
   return (
     <main className="h-screen my-8 flex">
       <Header />
@@ -57,7 +79,11 @@ function App() {
         selectedProjectID={selectedProjectID}
         onSelectProject={handleSelectProject}
       />
-      <Project project={selectedProject} onDelete={handleDeleteProject} />
+      <Project
+        project={selectedProject}
+        onDelete={handleDeleteProject}
+        onEditProjectName={handleEditProjectName}
+      />
     </main>
   );
 }
