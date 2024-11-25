@@ -32,6 +32,16 @@ function App() {
     setSelectedProjectID(projectID);
   }
 
+  function handleDeleteProject() {
+    setProjects((existingProjects) => {
+      const updatedProjects = existingProjects.filter(
+        (p) => p.id != selectedProjectID
+      );
+      setSelectedProjectID((currentId) => currentId + 1);
+      return updatedProjects;
+    });
+  }
+
   return (
     <main className="h-screen my-8 flex">
       <Header />
@@ -41,7 +51,7 @@ function App() {
         selectedProjectID={selectedProjectID}
         onSelectProject={handleSelectProject}
       />
-      <Project project={selectedProject} />
+      <Project project={selectedProject} onDelete={handleDeleteProject} />
     </main>
   );
 }

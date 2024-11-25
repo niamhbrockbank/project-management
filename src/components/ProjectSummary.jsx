@@ -1,4 +1,4 @@
-export default function ProjectSummary({ project }) {
+export default function ProjectSummary({ project, onDelete }) {
   const { name, date, description } = project;
   return (
     <section
@@ -10,7 +10,9 @@ export default function ProjectSummary({ project }) {
           <h2 className="text-2xl font-bold text-stone-800 my-4">{name}</h2>
           <p className="text-stone-500">{date}</p>
         </span>
-        <button className="text-stone-800 my-4 font-light">Delete</button>
+        <button onClick={onDelete} className="text-stone-800 my-4 font-light">
+          Delete
+        </button>
       </span>
 
       <p>{description}</p>
