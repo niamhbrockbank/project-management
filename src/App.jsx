@@ -3,11 +3,19 @@ import Header from "./components/Header";
 import Project from "./components/Project";
 import Sidebar from "./components/Sidebar";
 
+const INITIAL_PROJECTS = [
+  {
+    name: "Learning React",
+    id: 0,
+    date: "3/12/24",
+    description:
+      "Learn React from the ground up. Start with the basics and finish with more advanced knowledge.",
+  },
+  { name: "Mastering React", id: 1 },
+];
+
 function App() {
-  const [projects, setProjects] = useState([
-    { name: "Learning React", id: 0 },
-    { name: "Mastering React", id: 1 },
-  ]);
+  const [projects, setProjects] = useState(INITIAL_PROJECTS);
 
   const [selectedProjectID, setSelectedProjectID] = useState(0);
   const selectedProject = projects.find((p) => p.id === selectedProjectID);
