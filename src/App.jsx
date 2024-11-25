@@ -20,6 +20,10 @@ function App() {
     });
   }
 
+  function handleSelectProject(projectID) {
+    setSelectedProjectID(projectID);
+  }
+
   return (
     <main className="h-screen my-8 flex">
       <Header />
@@ -27,6 +31,7 @@ function App() {
         projects={projects}
         onAddProject={handleAddProject}
         selectedProjectID={selectedProjectID}
+        onSelectProject={handleSelectProject}
       />
       <Project project={selectedProject} />
     </main>

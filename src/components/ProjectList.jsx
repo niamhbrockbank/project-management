@@ -1,4 +1,4 @@
-export default function ProjectList({ selectedProjectID, projects }) {
+export default function ProjectList({ selectedProjectID, projects, onSelect }) {
   function isSelectedProject(project) {
     if (selectedProjectID !== project.id) {
       return false;
@@ -16,6 +16,7 @@ export default function ProjectList({ selectedProjectID, projects }) {
               className={`w-full hover:bg-stone-800 text-left py-2 px-2 rounded-md ${
                 isSelectedProject(p) ? " bg-stone-900" : "font-light"
               }`}
+              onClick={() => onSelect(p.id)}
             >
               {p.name}
             </button>

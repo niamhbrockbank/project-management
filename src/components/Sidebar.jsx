@@ -1,6 +1,11 @@
 import ProjectList from "./ProjectList";
 
-export default function Sidebar({ projects, onAddProject, selectedProjectID }) {
+export default function Sidebar({
+  projects,
+  onAddProject,
+  selectedProjectID,
+  onSelectProject,
+}) {
   return (
     <section className="bg-black text-white w-[35rem] mt-16 px-11 py-11 pt-11 rounded-r-xl ">
       <h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">
@@ -12,7 +17,11 @@ export default function Sidebar({ projects, onAddProject, selectedProjectID }) {
       >
         + Add Project
       </button>
-      <ProjectList selectedProjectID={selectedProjectID} projects={projects} />
+      <ProjectList
+        selectedProjectID={selectedProjectID}
+        projects={projects}
+        onSelect={onSelectProject}
+      />
     </section>
   );
 }
