@@ -6,12 +6,18 @@ import Sidebar from "./components/Sidebar";
 const INITIAL_PROJECTS = [
   {
     name: "Learning React",
-    id: 0,
+    id: crypto.randomUUID(),
     date: "Dec 3rd, 2024",
     description:
       "Learn React from the ground up. Start with the basics and finish with more advanced knowledge.",
   },
-  { name: "Mastering React", id: 1 },
+  {
+    name: "Mastering React",
+    id: crypto.randomUUID(),
+    date: "Dec 4th, 2024",
+    description:
+      "Learn React from the ground up. Start with the basics and finish with more advanced knowledge.",
+  },
 ];
 
 function App() {
@@ -22,7 +28,7 @@ function App() {
 
   function handleAddProject() {
     setProjects((existingProjects) => {
-      const newProjectId = existingProjects.length + 1;
+      const newProjectId = crypto.randomUUID();
       setSelectedProjectID(newProjectId);
       return [...existingProjects, { name: "New Project", id: newProjectId }];
     });
@@ -37,7 +43,7 @@ function App() {
       const updatedProjects = existingProjects.filter(
         (p) => p.id != selectedProjectID
       );
-      setSelectedProjectID((currentId) => currentId + 1);
+      setSelectedProjectID(0);
       return updatedProjects;
     });
   }
