@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Task from "./Task";
 
-export default function Tasks({ tasks, onEdit }) {
+export default function Tasks({ tasks, onEdit, onDelete }) {
   const [newTask, setNewTask] = useState("");
 
   function handleChange(event) {
@@ -27,7 +27,7 @@ export default function Tasks({ tasks, onEdit }) {
       </span>
       <ul className="w-full">
         {tasks.map((t, i) => (
-          <Task task={t} key={i} />
+          <Task task={t} key={i} onDelete={onDelete} index={i} />
         ))}
       </ul>
     </>

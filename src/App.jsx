@@ -75,6 +75,25 @@ function App() {
     });
   }
 
+  function handleDeleteTask(taskIndex) {
+    setProjects((prevProjects) => {
+      const copyOfProjects = _.cloneDeep(prevProjects);
+      const selectedIndex = prevProjects.findIndex(
+        (p) => p.id === selectedProjectID
+      );
+
+      const selectedProjectsTasks = prevProjects[selectedIndex].tasks;
+      const updatedTasks = [
+        ...selectedProjectsTasks.slice(0, taskIndex),
+        ...selectedProjectsTasks.slice(taskIndex + 1),
+      ];
+
+      copyOfProjects[selectedIndex].tasks = [...updatedTasks];
+
+      return copyOfProjects;
+    });
+  }
+
   return (
     <main className="h-screen my-8 flex">
       <Header />
@@ -88,6 +107,7 @@ function App() {
         project={selectedProject}
         onDelete={handleDeleteProject}
         onEditProject={handleEditProject}
+        onDeleteTask={handleDeleteTask}
       />
     </main>
   );
