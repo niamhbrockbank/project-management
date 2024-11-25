@@ -22,7 +22,7 @@ const INITIAL_PROJECTS = [
 
 const NEW_PROJECT = {
   name: "New Project",
-  description: "",
+  description: "Description goes here...",
 };
 
 function App() {
