@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import { useState } from "react";
 import INITIAL_PROJECTS from "./assets/initial-projects";
 import Header from "./components/Header";
@@ -17,14 +18,14 @@ function App() {
     INITIAL_PROJECTS[0].id
   );
 
-  const selectedProject = projects.find((p) => p.id === selectedProjectID);
+  const selectedProject = projects.filter((p) => p.id === selectedProjectID)[0];
 
   function handleAddProject() {
     setProjects((existingProjects) => {
       const newProjectId = crypto.randomUUID();
       setSelectedProjectID(newProjectId);
       return [
-        ...existingProjects,
+        ..._.cloneDeep(existingProjects),
         { ...NEW_PROJECT, id: newProjectId, date: getDate() },
       ];
     });
@@ -46,15 +47,23 @@ function App() {
 
   function handleEditProject(property, newValue) {
     setProjects((prevProjects) => {
-      const copyOfPrevProjects = [...prevProjects];
+      const copyOfPrevProjects = _.cloneDeep(prevProjects);
       const selectedIndex = prevProjects.findIndex(
         (p) => p.id === selectedProjectID
       );
 
-      const updatedProject = {
-        ...copyOfPrevProjects[selectedIndex],
-        [property]: newValue,
-      };
+      let updatedProject = {};
+      if (property === "tasks") {
+        updatedProject = {
+          ...copyOfPrevProjects[selectedIndex],
+          tasks: [...copyOfPrevProjects[selectedIndex].tasks, newValue],
+        };
+      } else {
+        updatedProject = {
+          ...copyOfPrevProjects[selectedIndex],
+          [property]: newValue,
+        };
+      }
 
       const updatedProjects = [
         ...copyOfPrevProjects.slice(0, selectedIndex),
@@ -63,6 +72,25 @@ function App() {
       ];
 
       return updatedProjects;
+    });
+  }
+
+  function handleDeleteTask(taskIndex) {
+    setProjects((prevProjects) => {
+      const copyOfProjects = _.cloneDeep(prevProjects);
+      const selectedIndex = prevProjects.findIndex(
+        (p) => p.id === selectedProjectID
+      );
+
+      const selectedProjectsTasks = prevProjects[selectedIndex].tasks;
+      const updatedTasks = [
+        ...selectedProjectsTasks.slice(0, taskIndex),
+        ...selectedProjectsTasks.slice(taskIndex + 1),
+      ];
+
+      copyOfProjects[selectedIndex].tasks = [...updatedTasks];
+
+      return copyOfProjects;
     });
   }
 
@@ -79,6 +107,7 @@ function App() {
         project={selectedProject}
         onDelete={handleDeleteProject}
         onEditProject={handleEditProject}
+        onDeleteTask={handleDeleteTask}
       />
     </main>
   );

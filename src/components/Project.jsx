@@ -2,7 +2,12 @@ import NoProjectSelected from "./NoProjectSelected";
 import ProjectSummary from "./ProjectSummary";
 import Tasks from "./Tasks";
 
-export default function Project({ project, onDelete, onEditProject }) {
+export default function Project({
+  project,
+  onDelete,
+  onEditProject,
+  onDeleteTask,
+}) {
   return (
     <>
       {!project && <NoProjectSelected />}
@@ -13,7 +18,11 @@ export default function Project({ project, onDelete, onEditProject }) {
             onDelete={onDelete}
             onEdit={onEditProject}
           />
-          <Tasks tasks={project.tasks} />
+          <Tasks
+            tasks={project.tasks}
+            onEdit={onEditProject}
+            onDelete={onDeleteTask}
+          />
         </section>
       )}
     </>
