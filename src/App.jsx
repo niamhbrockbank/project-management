@@ -58,7 +58,7 @@ function App() {
     });
   }
 
-  function handleEditProjectName(newName) {
+  function handleEditProject(property, newValue) {
     setProjects((prevProjects) => {
       const copyOfPrevProjects = [...prevProjects];
       const selectedIndex = prevProjects.findIndex(
@@ -67,7 +67,7 @@ function App() {
 
       const updatedProject = {
         ...copyOfPrevProjects[selectedIndex],
-        name: newName,
+        [property]: newValue,
       };
 
       const updatedProjects = [
@@ -92,7 +92,7 @@ function App() {
       <Project
         project={selectedProject}
         onDelete={handleDeleteProject}
-        onEditProjectName={handleEditProjectName}
+        onEditProject={handleEditProject}
       />
     </main>
   );

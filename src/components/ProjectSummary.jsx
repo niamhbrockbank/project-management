@@ -4,13 +4,19 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
   const { name, date, description } = project;
 
   const [editedName, setEditedName] = useState(name);
+  const [editedDescription, setEditedDescription] = useState(description);
 
   useEffect(() => {
     setEditedName(name);
+    setEditedDescription(description);
   }, [project]);
 
-  function handleChange(event) {
+  function handleChangeName(event) {
     setEditedName(event.target.value);
+  }
+
+  function handleChangeDescription(event) {
+    setEditedDescription(event.target.value);
   }
 
   return (
@@ -22,8 +28,8 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
         <span>
           <input
             className="w-full text-2xl font-bold text-stone-800 my-4 bg-inherit focus:outline-stone-200"
-            onBlur={() => onEdit(editedName)}
-            onChange={(e) => handleChange(e)}
+            onBlur={() => onEdit("name", editedName)}
+            onChange={(e) => handleChangeName(e)}
             value={editedName}
           />
           <p className="text-stone-500">{date}</p>
@@ -33,7 +39,14 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
         </button>
       </span>
 
-      <p>{description}</p>
+      <textarea
+        className="bg-inherit focus:outline-stone-200"
+        onChange={(e) => handleChangeDescription(e)}
+        onBlur={() => onEdit("description", editedDescription)}
+        value={editedDescription}
+      >
+        {description}
+      </textarea>
       <hr />
     </section>
   );
