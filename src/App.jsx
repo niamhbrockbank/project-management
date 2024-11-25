@@ -15,24 +15,29 @@ const INITIAL_PROJECTS = [
     name: "Mastering React",
     id: crypto.randomUUID(),
     date: "Dec 4th, 2024",
-    description:
-      "Learn React from the ground up. Start with the basics and finish with more advanced knowledge.",
+    description: "These are some really advanced concepts.",
   },
 ];
 
+const NEW_PROJECT = {
+  name: "New Project",
+  date: String(new Date()),
+  description: "",
+};
+
 function App() {
   const [projects, setProjects] = useState(INITIAL_PROJECTS);
-
   const [selectedProjectID, setSelectedProjectID] = useState(
     INITIAL_PROJECTS[0].id
   );
+
   const selectedProject = projects.find((p) => p.id === selectedProjectID);
 
   function handleAddProject() {
     setProjects((existingProjects) => {
       const newProjectId = crypto.randomUUID();
       setSelectedProjectID(newProjectId);
-      return [...existingProjects, { name: "New Project", id: newProjectId }];
+      return [...existingProjects, { ...NEW_PROJECT, id: newProjectId }];
     });
   }
 
