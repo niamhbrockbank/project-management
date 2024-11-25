@@ -5,16 +5,20 @@ import Sidebar from "./components/Sidebar";
 
 function App() {
   const [projects, setProjects] = useState([
-    { name: "Do soemthng", id: 1 },
-    { name: "Do soemthafsd ng", id: 2 },
+    { name: "Learning React", id: 0 },
+    { name: "Mastering React", id: 1 },
   ]);
-
-  const selectedProject = projects.find((p) => p.id === 1);
+  const [selectedProjectID, setSelectedProjectID] = useState(0);
+  const selectedProject = projects.find((p) => p.id === selectedProjectID);
 
   return (
-    <main className="h-screen my-8 flex gap-8">
+    <main className="h-screen my-8 flex">
       <Header />
-      <Sidebar projects={projects} setProjects={setProjects} />
+      <Sidebar
+        projects={projects}
+        setProjects={setProjects}
+        selectedProjectID={selectedProjectID}
+      />
       <Project project={selectedProject} />
     </main>
   );
