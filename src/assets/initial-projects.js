@@ -5,7 +5,10 @@ const INITIAL_PROJECTS = [
     date: "Tues Dec 3 2024",
     description:
       "Learn React from the ground up. Start with the basics and finish with more advanced knowledge.",
-    tasks: [],
+    tasks: [
+      "Learn about state",
+      "Learn the different between declarative and the other one",
+    ],
   },
   {
     name: "Mastering React",
