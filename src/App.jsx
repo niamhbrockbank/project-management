@@ -23,7 +23,9 @@ const INITIAL_PROJECTS = [
 function App() {
   const [projects, setProjects] = useState(INITIAL_PROJECTS);
 
-  const [selectedProjectID, setSelectedProjectID] = useState(0);
+  const [selectedProjectID, setSelectedProjectID] = useState(
+    INITIAL_PROJECTS[0].id
+  );
   const selectedProject = projects.find((p) => p.id === selectedProjectID);
 
   function handleAddProject() {
