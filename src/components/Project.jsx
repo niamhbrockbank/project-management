@@ -3,9 +3,9 @@ import Tasks from "./Tasks";
 
 export default function Project({ project }) {
   return (
-    <>
-      <ProjectSummary></ProjectSummary>
+    <section id="project">
+      <ProjectSummary project={project} />
       <Tasks />
-    </>
+    </section>
   );
 }
