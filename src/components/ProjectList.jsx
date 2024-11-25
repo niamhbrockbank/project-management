@@ -1,4 +1,12 @@
-export default function ProjectList({ isSelectedProject, projects }) {
+export default function ProjectList({ selectedProjectID, projects }) {
+  function isSelectedProject(project) {
+    if (selectedProjectID !== project.id) {
+      return false;
+    }
+
+    return true;
+  }
+
   return (
     <menu className="mt-12">
       <ul className="flex flex-col items-center justify-left my-4 w-full">
