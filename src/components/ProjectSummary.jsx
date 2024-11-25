@@ -27,7 +27,7 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
       <span className="flex justify-between">
         <span>
           <input
-            className="w-full text-2xl font-bold text-stone-800 my-4 bg-inherit focus:outline-stone-200"
+            className="w-full text-2xl font-bold text-stone-700 my-4 bg-inherit focus:outline-stone-200"
             onBlur={() => onEdit("name", editedName)}
             onChange={(e) => handleChangeName(e)}
             value={editedName}
