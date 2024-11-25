@@ -7,7 +7,7 @@ const INITIAL_PROJECTS = [
   {
     name: "Learning React",
     id: 0,
-    date: "3/12/24",
+    date: "Dec 3rd, 2024",
     description:
       "Learn React from the ground up. Start with the basics and finish with more advanced knowledge.",
   },
