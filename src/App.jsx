@@ -1,6 +1,7 @@
 import * as _ from "lodash";
 import { useState } from "react";
 import Header from "./components/Header";
+import NoProjectSelected from "./components/NoProjectSelected";
 import Project from "./components/Project";
 import Sidebar from "./components/Sidebar";
 import getDate from "./utils/getDate";
@@ -12,12 +13,16 @@ const NEW_PROJECT = {
 };
 
 function App() {
-  const [projects, setProjects] = useState([
-    { ...NEW_PROJECT, id: crypto.randomUUID() },
-  ]);
-  const [selectedProjectID, setSelectedProjectID] = useState(projects[0].id);
+  const [projects, setProjects] = useState([]);
+  const [selectedProjectID, setSelectedProjectID] = useState(0);
 
-  const selectedProject = projects.filter((p) => p.id === selectedProjectID)[0];
+  let selectedProject;
+  if (projects.length > 0) {
+    selectedProject =
+      projects.length > 0
+        ? projects.filter((p) => p.id === selectedProjectID)[0]
+        : {};
+  }
 
   function handleAddProject() {
     setProjects((existingProjects) => {
@@ -102,12 +107,16 @@ function App() {
         selectedProjectID={selectedProjectID}
         onSelectProject={handleSelectProject}
       />
-      <Project
-        project={selectedProject}
-        onDelete={handleDeleteProject}
-        onEditProject={handleEditProject}
-        onDeleteTask={handleDeleteTask}
-      />
+      {!selectedProject ? (
+        <NoProjectSelected />
+      ) : (
+        <Project
+          project={selectedProject}
+          onDelete={handleDeleteProject}
+          onEditProject={handleEditProject}
+          onDeleteTask={handleDeleteTask}
+        />
+      )}
     </main>
   );
 }
