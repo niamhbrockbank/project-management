@@ -98,6 +98,20 @@ function App() {
     });
   }
 
+  let content;
+  if (selectedProject) {
+    content = (
+      <Project
+        project={selectedProject}
+        onDelete={handleDeleteProject}
+        onEditProject={handleEditProject}
+        onDeleteTask={handleDeleteTask}
+      />
+    );
+  } else {
+    content = <NoProjectSelected onAddProject={handleAddProject} />;
+  }
+
   return (
     <main className="h-screen my-8 flex">
       <Header />
@@ -107,16 +121,7 @@ function App() {
         selectedProjectID={selectedProjectID}
         onSelectProject={handleSelectProject}
       />
-      {!selectedProject ? (
-        <NoProjectSelected onAddProject={handleAddProject} />
-      ) : (
-        <Project
-          project={selectedProject}
-          onDelete={handleDeleteProject}
-          onEditProject={handleEditProject}
-          onDeleteTask={handleDeleteTask}
-        />
-      )}
+      {content}
     </main>
   );
 }
