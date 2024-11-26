@@ -8,6 +8,10 @@ export default function NewTask({ onEdit }) {
   }
 
   function handleAddTask() {
+    if (newTask === "") {
+      return;
+    }
+
     onEdit("tasks", newTask);
     setNewTask("");
   }
