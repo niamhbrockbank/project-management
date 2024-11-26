@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import { useState } from "react";
-import INITIAL_PROJECTS from "./assets/initial-projects";
 import Header from "./components/Header";
+import NoProjectSelected from "./components/NoProjectSelected";
 import Project from "./components/Project";
 import Sidebar from "./components/Sidebar";
 import getDate from "./utils/getDate";
@@ -13,12 +13,16 @@ const NEW_PROJECT = {
 };
 
 function App() {
-  const [projects, setProjects] = useState(INITIAL_PROJECTS);
-  const [selectedProjectID, setSelectedProjectID] = useState(
-    INITIAL_PROJECTS[0].id
-  );
+  const [projects, setProjects] = useState([]);
+  const [selectedProjectID, setSelectedProjectID] = useState(0);
 
-  const selectedProject = projects.filter((p) => p.id === selectedProjectID)[0];
+  let selectedProject;
+  if (projects.length > 0) {
+    selectedProject =
+      projects.length > 0
+        ? projects.filter((p) => p.id === selectedProjectID)[0]
+        : {};
+  }
 
   function handleAddProject() {
     setProjects((existingProjects) => {
@@ -36,8 +40,8 @@ function App() {
   }
 
   function handleDeleteProject() {
-    setProjects((existingProjects) => {
-      const updatedProjects = existingProjects.filter(
+    setProjects((prevProjects) => {
+      const updatedProjects = prevProjects.filter(
         (p) => p.id != selectedProjectID
       );
       setSelectedProjectID(0);
@@ -94,6 +98,20 @@ function App() {
     });
   }
 
+  let content;
+  if (selectedProject) {
+    content = (
+      <Project
+        project={selectedProject}
+        onDelete={handleDeleteProject}
+        onEditProject={handleEditProject}
+        onDeleteTask={handleDeleteTask}
+      />
+    );
+  } else {
+    content = <NoProjectSelected onAddProject={handleAddProject} />;
+  }
+
   return (
     <main className="h-screen my-8 flex">
       <Header />
@@ -103,12 +121,7 @@ function App() {
         selectedProjectID={selectedProjectID}
         onSelectProject={handleSelectProject}
       />
-      <Project
-        project={selectedProject}
-        onDelete={handleDeleteProject}
-        onEditProject={handleEditProject}
-        onDeleteTask={handleDeleteTask}
-      />
+      {content}
     </main>
   );
 }
