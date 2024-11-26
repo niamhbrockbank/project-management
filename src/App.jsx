@@ -108,7 +108,7 @@ function App() {
         onSelectProject={handleSelectProject}
       />
       {!selectedProject ? (
-        <NoProjectSelected />
+        <NoProjectSelected onAddProject={handleAddProject} />
       ) : (
         <Project
           project={selectedProject}
