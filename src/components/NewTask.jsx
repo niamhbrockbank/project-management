@@ -9,6 +9,7 @@ export default function NewTask({ onEdit }) {
 
   function handleAddTask() {
     onEdit("tasks", newTask);
+    setNewTask("");
   }
 
   return (
