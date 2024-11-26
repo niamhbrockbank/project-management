@@ -1,6 +1,5 @@
 import * as _ from "lodash";
 import { useState } from "react";
-import INITIAL_PROJECTS from "./assets/initial-projects";
 import Header from "./components/Header";
 import Project from "./components/Project";
 import Sidebar from "./components/Sidebar";
@@ -13,10 +12,10 @@ const NEW_PROJECT = {
 };
 
 function App() {
-  const [projects, setProjects] = useState(INITIAL_PROJECTS);
-  const [selectedProjectID, setSelectedProjectID] = useState(
-    INITIAL_PROJECTS[0].id
-  );
+  const [projects, setProjects] = useState([
+    { ...NEW_PROJECT, id: crypto.randomUUID() },
+  ]);
+  const [selectedProjectID, setSelectedProjectID] = useState(projects[0].id);
 
   const selectedProject = projects.filter((p) => p.id === selectedProjectID)[0];
 
