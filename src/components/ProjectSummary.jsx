@@ -39,9 +39,11 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
   return (
     <>
       <Modal ref={modal}>
-        <h2>Invalid Input</h2>
-        <p>Looks like you forgot to add a name!</p>
-        <p>Please add a project name.</p>
+        <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
+        <p className="text-stone-600 mb-4">
+          Looks like you forgot to add a name!
+        </p>
+        <p className="text-stone-600 mb-4">Please add a project name.</p>
       </Modal>
       <section
         id="project-sumnmary"
