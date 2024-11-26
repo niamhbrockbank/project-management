@@ -14,15 +14,17 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
   }, [project]);
 
   function handleSave(property) {
-    let editedValue = editedDescription;
+    let editedValue;
 
     if (property === "name") {
       editedValue = editedName.trim();
+    } else {
+      editedValue = editedDescription.trim();
+    }
 
-      if (editedValue === "") {
-        modal.current.open();
-        return;
-      }
+    if (editedValue === "") {
+      modal.current.open();
+      return;
     }
 
     onEdit(property, editedValue);
@@ -41,9 +43,11 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
       <Modal ref={modal}>
         <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
         <p className="text-stone-600 mb-4">
-          Looks like you forgot to add a name!
+          Looks like you forgot to add some details!
         </p>
-        <p className="text-stone-600 mb-4">Please add a project name.</p>
+        <p className="text-stone-600 mb-4">
+          Please don't leave any fields empty.
+        </p>
       </Modal>
       <section
         id="project-sumnmary"
@@ -59,7 +63,10 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
             />
             <p className="text-stone-500">{date}</p>
           </span>
-          <button onClick={onDelete} className="text-stone-800 my-4 font-light">
+          <button
+            onClick={onDelete}
+            className="text-stone-600 my-4 font-light hover:text-stone-950"
+          >
             Delete
           </button>
         </span>
