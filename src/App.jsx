@@ -40,8 +40,8 @@ function App() {
   }
 
   function handleDeleteProject() {
-    setProjects((existingProjects) => {
-      const updatedProjects = existingProjects.filter(
+    setProjects((prevProjects) => {
+      const updatedProjects = prevProjects.filter(
         (p) => p.id != selectedProjectID
       );
       setSelectedProjectID(0);
