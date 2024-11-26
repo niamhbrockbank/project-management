@@ -51,7 +51,7 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
       </Modal>
       <section
         id="project-sumnmary"
-        className="flex flex-col h-2/6 w-full mt-12 justify-between"
+        className="flex flex-col  w-full mt-12 justify-between"
       >
         <span className="flex justify-between">
           <span>
@@ -72,7 +72,7 @@ export default function ProjectSummary({ project, onDelete, onEdit }) {
         </span>
 
         <textarea
-          className="bg-inherit focus:outline-stone-200"
+          className="bg-inherit focus:outline-stone-200 my-4"
           onChange={(e) => handleChangeDescription(e)}
           onBlur={() => handleSave("description")}
           value={editedDescription}
